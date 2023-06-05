@@ -29,7 +29,8 @@ jobs:
       - name: build py
         run: python fibonacci.py -o fibonacci_o.o
 
-      # Runs a set of commands using the runners shell
-      - name: Run py app
-        run: | 
-          ls -la
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.1.1
+        with:
+          name: build py
+          path: fibonacci.py
