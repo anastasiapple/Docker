@@ -10,7 +10,7 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_PASSWD }}
   pull_and_run:
-    needs: build_and_push_to_dh
+    needs: build_push
     runs-on: ubuntu-latest
     steps:
       - run: |
