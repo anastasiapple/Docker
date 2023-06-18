@@ -1,0 +1,19 @@
+name: Make_new_build
+
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  build_push:
+    needs: pylint
+    uses: ./.github/workflows/build_and_push_to_dh.yml
+    secrets: 
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_PASSWD }}
+  pull_and_run:
+    needs: build_and_push_to_dh
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          docker pull anastassiapple/lab:latest
+          docker run anastassiapple/lab:latest
